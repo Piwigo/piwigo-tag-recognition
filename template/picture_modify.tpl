@@ -9,7 +9,7 @@
     const ACTUAL_API = '{$ACTUAL_API}'
     const str_left_this_month = '{'%d request left this month'|@translate}';
     const str_there_is_an_error = '{'There is an error with the API'|@translate}';
-    const str_no_more_request = '{'There are no more requests left this month'|@translate}';
+    const str_no_more_request = '{'No more requests left this month'|@translate}';
     const str_loading = '{'Loading...'|@translate}';
     const language = null;
 {/footer_script}
@@ -54,7 +54,6 @@
     <div class="tr-panel tr-panel-succeed">
         <div class="tr-panel-header">
             <span class="tr-panel-title">{'Tags successfully added'|@translate}</span>
-            <span class="tr-panel-hint">{'Refresh the page or save settings to see them'|@translate}</span>
         </div>
         <div class="tr-dropdown-actions">
             <div class="tr-button-1 tr-action-cancel">{'Ok'|@translate}</div>
