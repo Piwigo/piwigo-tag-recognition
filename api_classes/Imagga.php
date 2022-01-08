@@ -7,14 +7,13 @@ class Imagga extends API {
         return [
             "icon" => 'https://imagga.com/static/images/logo.svg',
             "site" => 'https://imagga.com/',
-            "color" => '#3DBCB2',
             "info" => `
             Imagga is a computer vision artificial intelligence company. Imagga Image Recognition API features auto-tagging, auto-categorization, face recognition, visual search, content moderation, auto-cropping, color extraction, custom training and ready-to-use models. Available in the Cloud and on On-Premise. It is currently deployed in leading digital asset management solutions and personal cloud platforms and consumer facing apps.
             `
         ];
     }
 
-    function getParams() : array
+    function getConfParams() : array
     {
         return [
             'USER' => 'API Key', 
@@ -40,17 +39,20 @@ class Imagga extends API {
         curl_close($ch);
 
         $json_response = json_decode($response);
+
+        if (!key_exists("result", $json_response))
+            throw new Exception('Api Error');
         
         return $json_response->result->monthly_limit - $json_response->result->monthly_processed;
     }
 
-    function generateTags($params) : array
+    function generateTags($conf, $params) : array
     {
         $file_path = $this->getFileName($params['imageId']);
 
         $api_credentials = array(
-            'key' => $params['USER'],
-            'secret' => $params['USER_PASSWORD']
+            'key' => $conf['USER'],
+            'secret' => $conf['USER_PASSWORD']
         );
 
         $type = pathinfo($file_path, PATHINFO_EXTENSION);
@@ -85,6 +87,9 @@ class Imagga extends API {
         
         $json_response = json_decode($response);
         
+        if (!key_exists("result", $json_response))
+            throw new Exception('Api Error');
+
         $tags = [];
 
         foreach ($json_response->result->tags as $tagObject) 

@@ -1,5 +1,5 @@
 <?php
-defined('COLOR_PALETTE_PATH') or die('Hacking attempt!');
+defined('TR_PATH') or die('Hacking attempt!');
 
 global $template, $page, $conf;
 
@@ -25,7 +25,7 @@ if (isset($_POST['use'])||isset($_POST['save']))
     }
     
     $apiObject = tr_getAPI($_POST['api']);
-    foreach ($apiObject->getParams() as $key => $value) {
+    foreach ($apiObject->getConfParams() as $key => $value) {
       $newConf->setParam($_POST['api'], $key, $_POST[$key]);
     }
     tr_setConf($newConf);
@@ -39,7 +39,7 @@ $tr_api_conf = [];
 foreach (TR_API_LIST as $apiName) {
   $apiObject = tr_getAPI($apiName);
   $tr_api_info[$apiName] = $apiObject->getInfo();
-  $tr_api_params[$apiName] = $apiObject->getParams();
+  $tr_api_params[$apiName] = $apiObject->getConfParams();
   $tr_api_conf[$apiName] = tr_getConf()->getConf($apiName);
 }
 

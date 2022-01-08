@@ -7,7 +7,7 @@ if (!defined("TR_PATH"))
   define('TR_PATH', PHPWG_PLUGINS_PATH.basename(dirname(__FILE__)).'/');
 }
 
-include_once(TR_PATH.'conf.php');
+include_once(TR_PATH.'include/conf.php');
 
 class tag_recognition_maintain extends PluginMaintain
 {

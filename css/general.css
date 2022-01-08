@@ -70,6 +70,16 @@
     top: 0;
     padding: 10px;
     font-size: 15px;
+    z-index: 10;
+}
+
+.tr-api-used {
+    position: absolute;
+    right: 50%;
+    top: -10px;
+    font-size: 13px;
+    transform: translateX(50%);
+    font-weight: bold;
 }
 
 .tr-icon {
@@ -346,4 +356,45 @@
     margin-right: 52px;
     transform: translateY(-54px);
     padding: 6px 10px; 
+}
+
+/* Batch Manager Part */
+.tr-batch-manager {
+    width: 500px;
+}
+
+.tr-batch-manager > * {
+    display: flex;
+    align-items: center;
+}
+
+.tr-batch-manager .tr-batch-manager-info {
+    margin: 0;
+}
+
+.tr-batch-manager .tr-batch-manager-info i {
+    font-size: 30px;
+    color: #363636;
+}
+
+.tr-batch-manager .tr-batch-manager-info p {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+}
+
+.tr-batch-manager .tr-batch-manager-input {
+    margin-top: 10px;
+}
+
+.tr-batch-manager .tr-batch-manager-input .tr-input-container-dropdown{
+    margin-right: 20px;
+}
+
+.tr-batch-manager .tr-batch-manager-input .tr-input-container-dropdown label{
+    margin-right: 10px;
+}
+
+.tr-batch-manager .tr-batch-manager-input .tr-input-container-dropdown input{
+    margin: 0;
 }
