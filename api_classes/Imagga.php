@@ -21,34 +21,12 @@ class Imagga extends API {
         ];
     }
 
-    function getRemainingRequest($params) : int
-    {
-        $api_credentials = array(
-            'key' =>  $params['USER'],
-            'secret' => $params['USER_PASSWORD']
-        );
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, 'https://api.imagga.com/v2/usage');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_HEADER, FALSE);
-        curl_setopt($ch, CURLOPT_USERPWD, $api_credentials['key'].':'.$api_credentials['secret']);
-
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        $json_response = json_decode($response);
-
-        if (!key_exists("result", $json_response))
-            throw new Exception('Api Error');
-        
-        return $json_response->result->monthly_limit - $json_response->result->monthly_processed;
-    }
-
     function generateTags($conf, $params) : array
     {
         $file_path = $this->getFileName($params['imageId']);
+
+        if (!(isset($conf['USER']) && isset($conf['USER_PASSWORD'])))
+            throw new Exception('API parameters are not set');
 
         $api_credentials = array(
             'key' => $conf['USER'],
@@ -86,8 +64,8 @@ class Imagga extends API {
         curl_close($ch);
         
         $json_response = json_decode($response);
-        
-        if (!key_exists("result", $json_response))
+
+        if (!property_exists($json_response, "result") || !property_exists($json_response->result, "tags"))
             throw new Exception('Api Error');
 
         $tags = [];

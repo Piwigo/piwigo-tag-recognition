@@ -1,35 +1,13 @@
 $(() => {
-
-    let has_loaded = false;
     
     const PICTURE_ID = $('#pictureModify')
         .attr('action')
         .match(/page=photo-(\d+)/)[1];
 
+    $('#generateTag').on('click', generateTags);
+    $('#applyGeneratedTag').on('click', applyGeneratedTags)
+
     $('#tr-robot-button').on('click',function() {
-        if (!has_loaded) {
-            getRemainingRequest(ACTUAL_API)
-                .then(nb => {
-                    if (nb > 0) {
-                        $('#trMessage')
-                            .html(str_left_this_month.replace('%d', `<span>${nb}</span>`));
-                        $('#generateTag').removeClass('tr-disabled');
-                        $('#generateTag').on('click', generateTags);
-                        $('#applyGeneratedTag').on('click', applyGeneratedTags)
-                    } else {
-                        $('#trMessage').html(str_no_more_request);
-                        $('#trMessage').addClass('tr-error');
-                        $('#tr-robot-button').addClass('tr-robot-confused');
-                    }
-                }).catch((err) => {
-                    $('#trMessage')
-                        .html(str_there_is_an_error);
-                    $('#trMessage').addClass('tr-error');
-                    $('#tr-robot-button').addClass('tr-robot-dead');
-                    console.error(err);
-                });
-            has_loaded = true;
-        }
         $('.tr-dropdown').toggle();
     })
     
@@ -37,21 +15,38 @@ $(() => {
         $('.tr-dropdown').attr('data-panel', 'loading');
         $('#tr-robot-button').addClass('loading');
 
-        let tags = await generateTagsFromAPI(
-            ACTUAL_API,
-            $('#tr-language').val(), 
-            PICTURE_ID,
-            $('#tr-limit').val()
-        );
+        try {
+            let tags = await generateTagsFromAPI(
+                ACTUAL_API,
+                $('#tr-language').val(), 
+                PICTURE_ID,
+                $('#tr-limit').val()
+            );
 
-        $('#tr-robot-button').removeClass('loading');
-        $('.tr-dropdown').attr('data-panel', 'select');
+            $('#tr-robot-button').removeClass('loading');
+            $('.tr-dropdown').attr('data-panel', 'select');
+    
+            $('.tr-tag-container').html('')
+    
+            tags.forEach(tag => {
+                createTagBox(tag);
+            });
+        } catch(err) {
+            $('#trMessage')
+                .html(str_there_is_an_error);
+            $('#trMessage').addClass('tr-error');
 
-        $('.tr-tag-container').html('')
+            $('#tr-robot-button').removeClass('loading');
 
-        tags.forEach(tag => {
-            createTagBox(tag);
-        });
+            $('.tr-dropdown').attr('data-panel', 'default');
+
+            $('#generateTag').addClass('tr-disabled');
+
+            $('#tr-robot-button').addClass('dead');
+            console.error(err.message);
+        };
+
+
     }
 
     function createTagBox(tag) {

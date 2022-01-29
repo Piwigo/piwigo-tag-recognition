@@ -1,6 +1,6 @@
 <?php
 
-define('TR_API_LIST', ['Imagga']);
+define('TR_API_LIST', ['Imagga', 'Azure']);
 
 abstract class API
 {
@@ -16,12 +16,6 @@ abstract class API
      * Return an array key-value of the essential configuration of the api
      */
     abstract function getConfParams() : array ; 
-
-    /**
-     * Return how many HTTP request are remaining this month for api account
-     * Need all the params from the method getConfParams in $conf to work
-     */
-    abstract function getRemainingRequest($conf) : int;
     
     /**
      * Generate tags with the API

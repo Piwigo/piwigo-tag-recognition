@@ -7,7 +7,8 @@ function tr_getAPI($api) : API {
 
     $ret = new Imagga();
 
-    # if ($api = 'AWS') $ret = ...
+    if ($api == 'Azure') $ret = new Azure();
+    
     return $ret;
 }
 

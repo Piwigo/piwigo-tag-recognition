@@ -7,32 +7,6 @@ if (!defined('PHPWG_ROOT_PATH'))
 
 /**
  * API method
- * Get the remaining requests this month for the selected API.
- * @param mixed[] $params
- *    @option string api (optional)
- */
-function ws_tagRecognition_getRemainingRequest($params, &$service) 
-{
-
-  if (get_pwg_token() != $params['pwg_token'])
-  {
-    return new PwgError(403, 'Invalid security token');
-  }
-
-  $apiName = $params['api'] ?? tr_getConf()->getSelectedAPI();
-  $conf = tr_getConf()->getConf($apiName);
-
-  try {
-    $nbrequest = tr_getAPI($apiName)->getRemainingRequest($conf);
-  } catch (\Throwable $th) {
-    return new PwgError(403, 'API Error');
-  }
-
-  return $nbrequest;
-}
-
-/**
- * API method
  * Call the API and generate tags for the selected image
  * @param mixed[] $params
  *    @option int imageId
@@ -51,8 +25,8 @@ function ws_tagRecognition_getTags($params, &$service)
   $apiName = ($params['api'] != '')?  $params['api']:tr_getConf()->getSelectedAPI();
   $conf = tr_getConf()->getConf($apiName);
 
+  $tags = tr_getAPI($apiName)->generateTags($conf, $params);
   try {
-    $tags = tr_getAPI($apiName)->generateTags($conf, $params);
   } catch (\Throwable $th) {
     return new PwgError(403, 'API Error');
   }

@@ -46,36 +46,6 @@ function tr_element_set_global_action($action, $collection)
 
   if ($action == 'tag_recognition')
   {
-
-    try {
-
-      $apiName = tr_getConf()->getSelectedAPI();
-      $conf = tr_getConf()->getConf($apiName);
-
-      $nbRequest = tr_getAPI($apiName)->getRemainingRequest($conf);
-      
-      if (count($collection) > $nbRequest)
-      {
-        $page['warnings'][] = l10n('You haven\'t enough request left this month for this action');
-      } 
-      else 
-      {
-        foreach ($collection as $imageId) {
-          $params = [
-            'imageId' => $imageId,
-            'language' => $_POST['tr-language'],
-            'limit' => $_POST['tr-limit'],
-          ];
-          
-          $tags = tr_getAPI($apiName)->generateTags($conf, $params);
-
-          tr_createAndAssignTags($tags, $imageId);
-        }
-
-        $page['infos'][] = l10n('Tag successfully generated and added');
-      }
-    } catch (\Throwable $th) {
-      $page['warnings'][] = l10n('There is an error with the API');
-    }
+    $page['infos'][] = l10n('Tag successfully generated and added');
   }
 }

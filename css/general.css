@@ -69,8 +69,9 @@
     right: 0;
     top: 0;
     padding: 10px;
-    font-size: 15px;
+    font-size: 16px;
     z-index: 10;
+    margin: 0 !important;
 }
 
 .tr-api-used {
@@ -80,6 +81,10 @@
     font-size: 13px;
     transform: translateX(50%);
     font-weight: bold;
+    padding: 5px 10px;
+    color: white;
+    background: #363636;
+    border-radius: 30px;
 }
 
 .tr-icon {
@@ -87,7 +92,7 @@
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
+    width: 80%;
     height: 100px;
     background-position: center;
     background-repeat: no-repeat;
@@ -124,16 +129,17 @@
     position: relative;
 }
 
-#tr-robot-button {
+.tr-icon-robot {
     color: #363636;
     font-size: 36px;
-    cursor: pointer;
+    position: relative;
 }
 
 
 #picture-content #tr-robot-button {
     position: absolute;
     right: 0;
+    cursor: pointer;
     z-index: 2;
     margin-right: 10px;
     transform: translateY(-65px);
@@ -145,23 +151,27 @@
     margin-right: 15px;
 }
 
-#tr-robot-button:hover::before {
+.tr-icon-robot:hover::before {
     content: '\E804';
 }
 
-#tr-robot-button.tr-robot-confused::before {
+.tr-icon-robot.confused::before {
     content: '\E801';
 }
 
-#tr-robot-button.tr-robot-dead::before {
+.tr-icon-robot.dead::before {
     content: '\E805';
 }
 
-#tr-robot-button.loading::before {
+.tr-icon-robot.happy::before {
+    content: '\E804';
+}
+
+.tr-icon-robot.loading::before {
     content: '\E806';
 }
 
-#tr-robot-button.loading::after {
+.tr-icon-robot.loading::after {
     content: '\e81d';
     font-family: "fontello";
     font-style: normal;
@@ -370,11 +380,6 @@
 
 .tr-batch-manager .tr-batch-manager-info {
     margin: 0;
-}
-
-.tr-batch-manager .tr-batch-manager-info i {
-    font-size: 30px;
-    color: #363636;
 }
 
 .tr-batch-manager .tr-batch-manager-info p {

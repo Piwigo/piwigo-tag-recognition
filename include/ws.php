@@ -11,21 +11,6 @@ include_once(PHPWG_ROOT_PATH.'include/common.inc.php');
 function admin_ws_api_ws_add_methods($arr)
 {
   $service = &$arr[0];
-  
-  $service->addMethod(
-      'pwg.tagRecognition.getRemainingRequest',
-      'ws_tagRecognition_getRemainingRequest',
-      array(
-        'api' =>  array(
-          'default'=>null, 
-          'info'=> 'If null, become the selected API',
-          'flags'=>WS_PARAM_OPTIONAL,
-        ),
-        'pwg_token' => array(),
-      ),
-      'Get the remaining requests this month for the selected API.'
-    );
-
 
   $service->addMethod(
     'pwg.tagRecognition.getTags',

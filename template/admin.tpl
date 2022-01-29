@@ -6,7 +6,6 @@
 {footer_script}
     const TR_APIS = Object.keys({json_encode($TR_API_LIST)});
     const TR_CONF = {json_encode($TR_API_CONF)};
-    const str_left_this_month = '{'%d request left this month'|@translate}';
 {/footer_script}
 
 <div class="titrePage">
@@ -17,8 +16,8 @@
 
     <div class="tr-api-forms">
     {foreach from=$TR_API_INFO item=apiInfo key=apiName}
-    <form method="post" class="tr-api-container" data-api='{$apiName}' {if $TR_API_SELECTED = $apiName} style="order=-1" {/if}>
-        {if $TR_API_SELECTED = $apiName} 
+    <form method="post" class="tr-api-container" data-api='{$apiName}' {if $TR_API_SELECTED == $apiName} style="order: -1" {/if}>
+        {if $TR_API_SELECTED == $apiName} 
         <i class="tr-api-used"> {'This API is used'|translate} </i>
         {/if}
 
@@ -36,7 +35,7 @@
         <input type="hidden" name="api" value="{$apiName}">
         <input type="hidden" name="pwg_token" value="{$PWG_TOKEN}">
         <input type="submit" name="save"class="tr-button-2" value="{'Save Settings'|translate}">
-        <input type="submit" name="use" class="tr-button-1 {if $TR_API_SELECTED = $apiName}tr-disabled{/if}" value="{'Use this API'|translate}">
+        <input type="submit" name="use" class="tr-button-1 {if $TR_API_SELECTED == $apiName}tr-disabled{/if}" value="{'Use this API'|translate}">
     </form>
     {/foreach}
     </div>

@@ -7,9 +7,7 @@
 {footer_script}
     const pwg_token = "{$PWG_TOKEN}";
     const ACTUAL_API = '{$ACTUAL_API}'
-    const str_left_this_month = '{'%d request left this month'|@translate}';
     const str_there_is_an_error = '{'There is an error with the API'|@translate}';
-    const str_no_more_request = '{'No more requests left this month'|@translate}';
     const str_loading = '{'Loading...'|@translate}';
     const language = null;
 {/footer_script}
@@ -18,7 +16,7 @@
     <div class="tr-panel tr-panel-default">
         <div class="tr-panel-header">
             <span class="tr-panel-title">{'Generate tags for this image'|@translate}</span>
-            <span id="trMessage" class="tr-panel-hint">{'Loading...'|@translate}</span>
+            <span id="trMessage" class="tr-panel-hint">{'With %s API'|@translate:$ACTUAL_API}</span>
         </div>
 
         <div class="tr-input-container-dropdown">
@@ -31,7 +29,7 @@
             <input id="tr-language" type="text" value="{$USER_LANG}">
         </div>
 
-        <div id="generateTag" class="tr-button-1 tr-disabled">{'Generate tags'|@translate}</div>
+        <div id="generateTag" class="tr-button-1">{'Generate tags'|@translate}</div>
     </div>
     <div class="tr-panel tr-panel-select">
         <div class="tr-panel-header">
