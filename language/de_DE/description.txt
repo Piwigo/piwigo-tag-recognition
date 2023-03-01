@@ -1,0 +1,1 @@
+Vorschlagen von Tags für ein Bild mit einer externen Bilderkennungs-API
