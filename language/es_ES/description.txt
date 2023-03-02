@@ -1,0 +1,1 @@
+Sugerir etiquetas relacionadas con una imagen mediante una API externa de reconocimiento de imágenes
