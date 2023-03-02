@@ -1,0 +1,1 @@
+Foreslå tagger relatert til et bilde med en ekstern bildegjenkjennings-API
