@@ -1,0 +1,1 @@
+Propopose des mots-clés associés à une image via une reconnaissance d'image sur une API externe.
