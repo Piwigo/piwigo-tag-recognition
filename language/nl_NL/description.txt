@@ -1,0 +1,3 @@
+Suggest tags related to an image with a external image recognition API
+
+Stel tags voor met betrekking tot een afbeelding met een externe beeldherkennings-API
