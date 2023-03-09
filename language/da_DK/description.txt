@@ -1,0 +1,1 @@
+Foreslå tags med relation til et billede vha. et eksternt billedgenkendelses-API
