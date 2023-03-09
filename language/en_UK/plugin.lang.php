@@ -14,8 +14,6 @@ $lang['Fetching the API...'] = "Fetching the API...";
 $lang['Tags successfully added'] = "Tags successfully added";
 $lang['Applies auto-generated tags to images'] = "Applies auto-generated tags to images";
 $lang['Maximum number of tags'] = "Maximum number of tags";
-$lang['You haven\'t enough request left this month for this action'] = "You haven\'t enough request left this month for this action";
+$lang['You haven\'t enough request left this month for this action'] = 'You haven\'t enough request left this month for this action';
 $lang['Tag successfully generated and added'] = "Tag successfully generated and added";
-$lang['Loading... %d1/%d2 processed photos'] = "Chargement... %d1/%d2 processed photos";
-
-?>
+$lang['Loading... %d1/%d2 processed photos'] = 'Loading... %d1/%d2 processed photos';

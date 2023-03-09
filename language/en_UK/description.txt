@@ -1,1 +1,1 @@
-Suggest tags related to an image with a external image recognition API
+Suggest tags related to an image with an external image recognition API
