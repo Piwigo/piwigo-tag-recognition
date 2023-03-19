@@ -1,0 +1,1 @@
+Navrhování štítků souvisejících s obrázkem pomocí externího rozhraní API pro rozpoznávání obrázků
