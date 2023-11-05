@@ -1,6 +1,6 @@
 <?php
 
-define('TR_API_LIST', ['Imagga', 'Azure']);
+define('TR_API_LIST', ['Imagga', 'Azure', 'StableDiff']);
 
 abstract class API
 {
