@@ -14,8 +14,7 @@ $lang['Proposed tags'] = 'Vorgeschlagene Tags';
 $lang['Tag Recognition'] = 'Tag-Erkennung';
 $lang['Tag successfully generated and added'] = 'Tag erfolgreich generiert und hinzugefügt';
 $lang['Tags successfully added'] = 'Tags erfolgreich hinzugefügt';
-$lang['There is an error with the API'] = 'Es gibt einen Fehler mit der API
-';
+$lang['There is an error with the API'] = 'Es gibt einen Fehler mit der API';
 $lang['Use this API'] = 'Diese API verwenden';
 $lang['With %s API'] = 'Mit der API von %s';
 $lang['You haven\'t enough request left this month for this action'] = 'Sie haben diesen Monat nicht mehr genug Anfragen für diese Aktion';
