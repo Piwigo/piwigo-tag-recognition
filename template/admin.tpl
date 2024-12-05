@@ -28,7 +28,7 @@
         {foreach from=$TR_API_PARAMS[$apiName] item=label key=param}
             <div class="tr-input-container" id="tr-input-container-{$param}">
                 <label for="user">{$label|@translate}</label>
-                <input type="text" id="" name={$param} value="{$TR_API_CONF[$apiName][$param]}">
+                <input type="text" id="" name={$param} value="{$TR_API_CONF[$apiName][$param]|default:''}">
             </div>
         {/foreach}
 
