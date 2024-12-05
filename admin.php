@@ -26,7 +26,7 @@ if (isset($_POST['use'])||isset($_POST['save']))
     
     $apiObject = tr_getAPI($_POST['api']);
     foreach ($apiObject->getConfParams() as $key => $value) {
-      $newConf->setParam($_POST['api'], $key, $_POST[$key]);
+      $newConf->setParam($_POST['api'], $key, trim($_POST[$key]));
     }
     tr_setConf($newConf);
   }
