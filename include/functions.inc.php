@@ -15,7 +15,7 @@ function tr_getAPI($api) : API {
 function tr_getConf() : TR_Conf {
     global $conf;
 
-    return unserialize($conf['tag_recognition']);
+    return safe_unserialize($conf['tag_recognition']);
 }
 
 function tr_setConf(TR_Conf $tr_conf) {

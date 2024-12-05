@@ -2,12 +2,7 @@
 
 defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
-if (!defined("TR_PATH"))
-{
-  define('TR_PATH', PHPWG_PLUGINS_PATH.basename(dirname(__FILE__)).'/');
-}
-
-include_once(TR_PATH.'include/conf.php');
+include_once(dirname(__FILE__).'/include/conf.php');
 
 class tag_recognition_maintain extends PluginMaintain
 {
