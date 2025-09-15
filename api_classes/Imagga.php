@@ -33,9 +33,20 @@ class Imagga extends API {
             'secret' => $conf['USER_PASSWORD']
         );
 
-        $type = pathinfo($file_path, PATHINFO_EXTENSION);
+        $pathinfo = pathinfo($file_path);
+        $mime_types = array(
+            'jpg'  => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'png'  => 'image/png',
+            'webp' => 'image/webp',
+            'gif'  => 'image/gif',
+            'svg'  => 'image/svg',
+        );
+
+        $mime_content_type = $mime_types[ $pathinfo['extension'] ] ?? 'application/octet-stream';
+
         $data = file_get_contents($file_path);
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $base64 = 'data:'.$mime_content_type.';base64,'.base64_encode($data);
 
         $ch = curl_init();
         

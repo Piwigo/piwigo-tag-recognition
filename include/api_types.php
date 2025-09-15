@@ -32,12 +32,34 @@ abstract class API
      */
     function getFileName($imageId) {
         $query = '
-SELECT path
+SELECT
+    id,
+    path,
+    representative_ext
   FROM '.IMAGES_TABLE.'
   WHERE id = '.((int)$imageId).'
 ;';
-        $result = query2array($query);
-        return $result[0]['path'];
+        $image_infos = pwg_db_fetch_assoc(pwg_query($query));
+        $src_image = new SrcImage($image_infos);
+
+        $derivative_url = DerivativeImage::url(IMG_MEDIUM, $src_image);
+
+        // if the derivative_url starts with "i", it means the client needs to request i.php,
+        // meaning the derivative is not in the cache
+        if (preg_match('/^i/', $derivative_url))
+        {
+            // we force the generation of the derivative in cache
+            set_make_full_url();
+            $derivative_url = DerivativeImage::url(IMG_MEDIUM, $src_image);
+            unset_make_full_url();
+
+            fetchRemote($derivative_url, $dest);
+
+            $src_image = new SrcImage($image_infos);
+            $derivative_url = DerivativeImage::url(IMG_MEDIUM, $src_image);
+        }
+
+        return $derivative_url;
     }
 }
 
