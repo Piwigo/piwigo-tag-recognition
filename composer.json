@@ -1,0 +1,14 @@
+{
+    "name": "piwigo/tag-recognition",
+    "description": "Piwigo plugin to suggest tags on images using external APIs",
+    "type": "piwigo-plugin",
+    "license": "MIT",
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "config": {
+        "platform": {
+            "php": "8.3"
+        }
+    }
+}
