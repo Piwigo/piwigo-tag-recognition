@@ -8,7 +8,8 @@ function tr_getAPI($api) : API {
     $ret = new Imagga();
 
     if ($api == 'Azure') $ret = new Azure();
-    
+    if ($api == 'OpenAICompatible') $ret = new OpenAICompatible();
+
     return $ret;
 }
 
