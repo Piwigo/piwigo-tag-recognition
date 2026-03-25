@@ -26,9 +26,23 @@
         <span class="tr-icon" style="background-image : url('{$apiInfo.icon}')"></span>
         
         {foreach from=$TR_API_PARAMS[$apiName] item=label key=param}
+            {assign var=field_type value='text'}
+            {if isset($TR_API_FIELD_TYPES[$apiName][$param])}
+                {assign var=field_type value=$TR_API_FIELD_TYPES[$apiName][$param]}
+            {/if}
             <div class="tr-input-container" id="tr-input-container-{$param}">
-                <label for="user">{$label|@translate}</label>
-                <input type="text" id="" name={$param} value="{$TR_API_CONF[$apiName][$param]|default:''}">
+                {if $field_type eq 'checkbox'}
+                    <label class="tr-checkbox-label">
+                        <input type="checkbox" name="{$param}" value="1" {if $TR_API_CONF[$apiName][$param] eq '1'}checked{/if}>
+                        {$label|@translate}
+                    </label>
+                {elseif $field_type eq 'textarea'}
+                    <label for="{$param}">{$label|@translate}</label>
+                    <textarea id="{$param}" name="{$param}" rows="4">{$TR_API_CONF[$apiName][$param]|default:''}</textarea>
+                {else}
+                    <label for="{$param}">{$label|@translate}</label>
+                    <input type="text" id="{$param}" name="{$param}" value="{$TR_API_CONF[$apiName][$param]|default:''}">
+                {/if}
             </div>
         {/foreach}
 

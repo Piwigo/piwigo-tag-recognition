@@ -24,35 +24,44 @@ if (isset($_POST['use'])||isset($_POST['save']))
       $newConf->setSelectedAPI($_POST['api']);
     }
     
-    $apiObject = tr_getAPI($_POST['api']);
+    $apiObject  = tr_getAPI($_POST['api']);
+    $fieldTypes = $apiObject->getConfFieldTypes();
     foreach ($apiObject->getConfParams() as $key => $value) {
-      $newConf->setParam($_POST['api'], $key, trim($_POST[$key]));
+      $type = isset($fieldTypes[$key]) ? $fieldTypes[$key] : 'text';
+      if ($type === 'checkbox') {
+        $newConf->setParam($_POST['api'], $key, isset($_POST[$key]) ? '1' : '0');
+      } else {
+        $newConf->setParam($_POST['api'], $key, trim($_POST[$key] ?? ''));
+      }
     }
     tr_setConf($newConf);
   }
 }
 
-$tr_api_info = [];
-$tr_api_params = [];
-$tr_api_conf = [];
+$tr_api_info        = [];
+$tr_api_params      = [];
+$tr_api_conf        = [];
+$tr_api_field_types = [];
 
 foreach (TR_API_LIST as $apiName) {
   $apiObject = tr_getAPI($apiName);
-  $tr_api_info[$apiName] = $apiObject->getInfo();
-  $tr_api_params[$apiName] = $apiObject->getConfParams();
-  $tr_api_conf[$apiName] = tr_getConf()->getConf($apiName);
+  $tr_api_info[$apiName]        = $apiObject->getInfo();
+  $tr_api_params[$apiName]      = $apiObject->getConfParams();
+  $tr_api_conf[$apiName]        = tr_getConf()->getConf($apiName);
+  $tr_api_field_types[$apiName] = $apiObject->getConfFieldTypes();
 }
 
 
 
 $template->assign(array(
-  'TR_PATH' => TR_PATH,
-  'TR_API_LIST' => TR_API_LIST,
-  'TR_API_INFO' => $tr_api_info,
-  'TR_API_PARAMS' => $tr_api_params,
-  'TR_API_CONF' => $tr_api_conf,
-  'TR_API_SELECTED' => tr_getConf()->getSelectedAPI(),
-  'PWG_TOKEN' => get_pwg_token()
+  'TR_PATH'             => TR_PATH,
+  'TR_API_LIST'         => TR_API_LIST,
+  'TR_API_INFO'         => $tr_api_info,
+  'TR_API_PARAMS'       => $tr_api_params,
+  'TR_API_CONF'         => $tr_api_conf,
+  'TR_API_FIELD_TYPES'  => $tr_api_field_types,
+  'TR_API_SELECTED'     => tr_getConf()->getSelectedAPI(),
+  'PWG_TOKEN'           => get_pwg_token()
   ));
 
 $template->set_filename('plugin_admin_content', realpath(TR_PATH . 'template/admin.tpl'));

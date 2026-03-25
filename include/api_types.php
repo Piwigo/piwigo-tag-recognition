@@ -1,6 +1,6 @@
 <?php
 
-define('TR_API_LIST', ['Imagga', 'Azure']);
+define('TR_API_LIST', ['Imagga', 'Azure', 'OpenAICompatible']);
 
 abstract class API
 {
@@ -15,7 +15,17 @@ abstract class API
     /**
      * Return an array key-value of the essential configuration of the api
      */
-    abstract function getConfParams() : array ; 
+    abstract function getConfParams() : array ;
+
+    /**
+     * Return an array of field types keyed by conf param name.
+     * Supported types: 'text' (default), 'textarea', 'checkbox'
+     * Params not listed here are rendered as plain text inputs.
+     */
+    function getConfFieldTypes() : array
+    {
+        return [];
+    }
     
     /**
      * Generate tags with the API

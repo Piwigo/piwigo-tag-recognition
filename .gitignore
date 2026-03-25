@@ -1,0 +1,3 @@
+vendor/
+composer.lock
+tests/fixtures/current_response.json
