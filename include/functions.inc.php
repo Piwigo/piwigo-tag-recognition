@@ -8,6 +8,7 @@ function tr_getAPI($api) : API {
     $ret = new Imagga();
 
     if ($api == 'Azure') $ret = new Azure();
+    if ($api == 'MyKeyworder') $ret = new MyKeyworder();
     
     return $ret;
 }
